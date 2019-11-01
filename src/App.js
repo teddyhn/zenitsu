@@ -1,10 +1,16 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
+import Navbar from "./components/Navbar/Navbar";
+import Login from "./components/Login/Login";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <div className="App">
-
-    </div>
+    <Router>
+      <Route path="/" component={Navbar} />
+      <Route exact path="/sign-in" component={Login} />
+    </Router>
   );
 }
 
