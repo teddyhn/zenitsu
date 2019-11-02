@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axiosWithAuth from "../../utils/axiosWithAuth";
 import axios from "axios";
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form';
@@ -25,7 +26,13 @@ const Login = props => {
           .post(`https://kitsu.io/api/oauth/token?grant_type=password&username=${credentials.email}&password=${credentials.password}`)
           .then(res => {
             localStorage.setItem('token', res.data.access_token);
-            props.history.push('/');
+            axiosWithAuth()
+                .get('users?filter[self]=true')
+                .then(res => {
+                    localStorage.setItem('name', res.data.data[0].attributes.name);
+                    props.history.push('/');
+                })
+                .catch(err => console.log(err));
           })
           .catch(() => {
               setErrors(true);
@@ -42,7 +49,7 @@ const Login = props => {
         <div className="login-form align-middle col-xl-2 col-md-4 col-10 p-4 rounded shadow">
             <Form onSubmit={handleSubmit}>
                 <Form.Text>
-                    <h3>Sign in with <img src="https://avatars1.githubusercontent.com/u/7648832?s=200&v=4" alt="Kitsu logo" /></h3>
+                    <h4>Sign in with <img src="https://avatars1.githubusercontent.com/u/7648832?s=200&v=4" alt="Kitsu logo" /></h4>
                 </Form.Text>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Control
@@ -70,7 +77,7 @@ const Login = props => {
                     />
                 </Form.Group>
                 <Button block variant="primary" type="submit">
-                    Sign In
+                    Sign in
                 </Button>
                 <Form.Text className="text-muted">
                     Need an account? <a className="text-decoration-none" href="https://kitsu.io/">Register with Kitsu.</a>

@@ -1,43 +1,50 @@
-import React, { useEffect } from "react";
+import React from "react";
 import '../../utils/axiosWithAuth';
+import Button from "react-bootstrap/Button";
+import Dropdown from "react-bootstrap/Dropdown";
+import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
+import { ReactComponent as Logo } from "../../assets/Lightning.svg";
+import { User } from 'react-feather';
 
 import "./Navbar.scss"
-import axiosWithAuth from "../../utils/axiosWithAuth";
 
 const SiteNavbar = props => {
     const token = localStorage.getItem("token");
 
     const signout = () => {
         localStorage.clear();
-        props.history.push('/');
+        props.history.push('/sign-in');
     }
-
-    useEffect(() => {
-        axiosWithAuth()
-            .get('https://kitsu.io/api/edge/users?filter[self]=true')
-            .then(res => {
-                localStorage.setItem('name', res.data.data[0].attributes.name)
-            })
-            .catch(err => console.log(err));
-    });
-
+    
     const username = localStorage.getItem("name");
 
     return (
-        <Navbar bg="light" variant="light" className="px-5 shadow">
-            <Navbar.Brand href="/">
-                Zenitsu
+        <Navbar bg="light" variant="light" className="font-weight-bold shadow">
+            <Navbar.Brand as={NavLink} to="/">
+                <Logo height={32} />
             </Navbar.Brand>
+            <Nav className="mr-auto d-inline-flex align-items-center">
+                <Form className="nav-search">
+                    <Form.Control type="text" placeholder="Search anime and manga..." className="mr-sm-2" size="sm" />
+                </Form>
+                <Nav.Link as={NavLink} to="/library">Library</Nav.Link>
+            </Nav>
+            
             <Nav className="ml-auto">
-                <Nav.Link>Library</Nav.Link>
-                <Nav.Link>{username}</Nav.Link>
                 {token ? (
-                   <Nav.Link onClick={signout}>Sign Out</Nav.Link>
-                   ) : <Nav.Link as={NavLink} to="/sign-in">Sign In</Nav.Link>
-                }
+                <Dropdown>
+                    <Dropdown.Toggle as={Nav.Link}><User /></Dropdown.Toggle>
+                    <Dropdown.Menu alignRight>
+                        <Dropdown.Item as={Nav.Link}>Signed in as <b>{username}</b></Dropdown.Item>
+                        <Dropdown.Divider />
+                        <Dropdown.Item as={Nav.Link} onClick={signout}>Settings</Dropdown.Item>
+                        <Dropdown.Item as={Nav.Link} onClick={signout}>Sign out</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
+                ) : <Nav.Link as={NavLink} to="/sign-in">Sign in</Nav.Link>}
             </Nav>
         </Navbar>
     );
