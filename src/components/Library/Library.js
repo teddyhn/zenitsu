@@ -29,7 +29,12 @@ function Library() {
             urls.map(url => {
                 return axiosWithAuth().get(url)
                     .then(res => {
-                        setContentIds(contentIds => [ ...contentIds, { id: res.data.data.id, type: res.data.data.type } ])
+                        setContentIds(contentIds => [ ...contentIds, 
+                            { 
+                                id: res.data.data.id, 
+                                type: res.data.data.type
+                            } 
+                        ])
                     })
                     .catch(err => console.log(err));
             })
