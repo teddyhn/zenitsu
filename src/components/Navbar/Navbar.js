@@ -1,6 +1,5 @@
 import React from "react";
 import '../../utils/axiosWithAuth';
-import Button from "react-bootstrap/Button";
 import Dropdown from "react-bootstrap/Dropdown";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
@@ -19,7 +18,7 @@ const SiteNavbar = props => {
         props.history.push('/sign-in');
     }
     
-    const username = localStorage.getItem("name");
+    const username = localStorage.getItem('username');
 
     return (
         <Navbar bg="light" variant="light" className="font-weight-bold shadow">
@@ -36,7 +35,7 @@ const SiteNavbar = props => {
             <Nav className="ml-auto">
                 {token ? (
                 <Dropdown>
-                    <Dropdown.Toggle as={Nav.Link}><User /></Dropdown.Toggle>
+                    <Dropdown.Toggle as={Nav.Link}><User height={18} /></Dropdown.Toggle>
                     <Dropdown.Menu alignRight>
                         <Dropdown.Item as={Nav.Link}>Signed in as <b>{username}</b></Dropdown.Item>
                         <Dropdown.Divider />

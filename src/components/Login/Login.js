@@ -29,7 +29,8 @@ const Login = props => {
             axiosWithAuth()
                 .get('users?filter[self]=true')
                 .then(res => {
-                    localStorage.setItem('name', res.data.data[0].attributes.name);
+                    localStorage.setItem('username', res.data.data[0].attributes.name);
+                    localStorage.setItem('userId', res.data.data[0].id);
                     props.history.push('/');
                 })
                 .catch(err => console.log(err));
