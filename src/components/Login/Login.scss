@@ -1,0 +1,22 @@
+@import '../../stylesheets/variables';
+
+img {
+    height: 50px;
+    width: 50px;
+}
+
+.form-text {
+    text-align: center;
+}
+
+.login-form {
+    background-color: $basic-white;
+    margin: auto;
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    
+    .btn {
+        margin-bottom: 1rem;
+    }
+}
