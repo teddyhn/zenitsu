@@ -15,7 +15,7 @@ const SiteNavbar = props => {
 
     const signout = () => {
         localStorage.clear();
-        props.history.push('/sign-in');
+        props.history.push('/library');
     }
     
     const username = localStorage.getItem('username');

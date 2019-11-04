@@ -1,4 +1,7 @@
 .card > .card-img {
+    border-bottom: 4px solid #ffffff;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
     height: initial;
     width: initial;
     margin: auto;
@@ -6,4 +9,23 @@
 
 .card {
     width: fit-content;
+}
+
+.library-cards {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.library-cards > div:nth-of-type(2n){
+    margin: 0 1rem;
+}
+
+.card > .progress {
+    border-radius: 0;
+    height: 8px;
+}
+
+.card > .card-text {
+    font-size: 11px;
+    padding: 0 0.25rem;
 }
