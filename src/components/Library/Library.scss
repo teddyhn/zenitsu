@@ -1,8 +1,11 @@
 .library-view {
-    min-height: fit-content;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    margin-top: 3rem;
 }
 
-#root > .library-view {
+.library-view > .content-view {
     padding-left: 34px!important;
 }
 
@@ -11,6 +14,24 @@
     flex-flow: row wrap;
 }
 
-.nav {
+.library-sidebar {
+    height: fit-content;
+    margin-left: 1.5rem;
+}
+
+.content-view > .nav {
+    margin-bottom: 1.5rem;
     margin-right: 10px;
+}
+
+.nav-tabs .nav-link {
+    border-bottom: none!important;
+}
+
+.nav-link.active {
+    background-color: #f8f9fa!important;
+}
+
+table.table.table-bordered {
+    width: calc(100% - 10px);
 }

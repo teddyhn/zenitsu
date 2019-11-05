@@ -1,0 +1,12 @@
+.grid-view, .list-view {
+    color: rgba(0, 0, 0, .5);
+
+    &:hover {
+        color: rgba(0, 0, 0, 1);
+        cursor: pointer;
+    }
+
+    &.active {
+        color:  rgba(0, 0, 0, 1);
+    }
+}

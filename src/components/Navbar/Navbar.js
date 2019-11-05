@@ -15,7 +15,7 @@ const SiteNavbar = props => {
 
     const signout = () => {
         localStorage.clear();
-        props.history.push('/library');
+        props.history.push('/sign-in');
     }
     
     const username = localStorage.getItem('username');
@@ -35,7 +35,7 @@ const SiteNavbar = props => {
             <Nav className="ml-auto">
                 {token ? (
                 <Dropdown>
-                    <Dropdown.Toggle as={Nav.Link}><User height={18} /></Dropdown.Toggle>
+                    <Dropdown.Toggle as={Nav.Link}><User /></Dropdown.Toggle>
                     <Dropdown.Menu alignRight>
                         <Dropdown.Item as={Nav.Link}>Signed in as <b>{username}</b></Dropdown.Item>
                         <Dropdown.Divider />
