@@ -1,47 +1,46 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 import Kitsu from 'kitsu';
-import LibraryProgressBar from '../LibraryProgressBar/LibraryProgressBar';
 
 import './LibraryEntry.scss';
-import { reject } from 'bluebird';
 
 function LibraryEntry(props) {
-    const [content, setContent] = useState([]);
+    const [contentInfo, setContentInfo] = useState();
 
     const api = new Kitsu();
 
-    // Promises allow requests to be completed asynchronously, avoiding duplicate requests
-    const getContent = (contentIds) => {
-        const promises = contentIds.map(content => new Promise(resolve => {
-            api.get(`${content.type}/${content.id}`)
-                .then(res => resolve(res.data))
-                .catch(err => reject(err))
-        }));
-    
-        Promise.all(promises).then(results => {
-            console.log(results);
-            setContent(results);
-        });
-    };
-
     useEffect(() => {
-        getContent(props.contentIds);
-    }, [props.contentIds]);
-
-    // Write getProgress function that will return current episode/chapter count for each content
+        const getContentInfo = (url) => {
+            const promise = new Promise((resolve, reject) => {
+                api.get(url.slice(26))
+                    .then(res => {
+                        resolve(res.data);
+                    })
+                    .catch(err => reject(err))
+            })
+    
+            Promise.resolve(promise).then(result => {
+                setContentInfo(result);
+            });
+        }
+        getContentInfo(props.contentUrl);
+    }, [])
 
     return (
-        <div className="library-cards mt-3">
-           {content.map(item => {
-               return (
-                    <Card key={item.id}>
-                        <Card.Img src={item.posterImage.tiny} />
-                        <LibraryProgressBar contentFilter={props.contentFilter} mediaId={item.id} episodeCount={item.episodeCount} />
+        <>
+        {contentInfo ? (
+                <div className="card-wrapper">
+                    <Card>
+                        <Card.Img src={contentInfo.posterImage.small} />
+                        {(props.progress / contentInfo.episodeCount === 1) ? (
+                            <ProgressBar variant="success" now={(props.progress / contentInfo.episodeCount) * 100} />
+                        ): <ProgressBar now={(props.progress / contentInfo.episodeCount) * 100} />}
+                        <Card.Text>Ep. {props.progress} of {contentInfo.episodeCount}</Card.Text>
                     </Card>
-               )
-           })}
-        </div>
+                </div>
+        ) : null}
+        </>
     )
 }
 

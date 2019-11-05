@@ -1,64 +1,55 @@
 import React, { useEffect, useState } from 'react';
-import axiosWithAuth from '../../utils/axiosWithAuth';
-import Kitsu from 'kitsu';
+import { connect } from 'react-redux';
+import { getLibraryData } from '../../actions';
 import Nav from 'react-bootstrap/Nav';
 
 import LibraryEntry from './LibraryEntry/LibraryEntry';
 import './Library.scss';
 
-function Library() {
-    const [contentIds, setContentIds] = useState([]);
-    const [contentFilter, setContentFilter] = useState('anime');
-
-    const api = new Kitsu();
-
-    const userId = localStorage.getItem('userId');
-
-    const fetchContentIds = async (contentFilter) => {
-      await api.get(`users/${userId}/library-entries`, {
-            filter: {
-                kind: contentFilter
-            }
-        })
-        .then(res => {
-            setContentIds([]);
-            const libraryEntries = res.data;
-            const urls = libraryEntries.map(entry => {
-                return entry.relationships.media.links.self;
-            });
-            urls.map(url => {
-                return axiosWithAuth().get(url)
-                    .then(res => {
-                        setContentIds(contentIds => [ ...contentIds, 
-                            { 
-                                id: res.data.data.id, 
-                                type: res.data.data.type
-                            } 
-                        ])
-                    })
-                    .catch(err => console.log(err));
-            })
-        })
-        .catch(err => console.log(err));
-    }
+function Library({ getLibraryData, libraryData, isLoading }) {
+    const [contentTypeFilter, setContentTypeFilter] = useState('anime');
 
     useEffect(() => {
-        fetchContentIds(contentFilter);
-    }, [contentFilter])
+        getLibraryData(contentTypeFilter);
+    }, [contentTypeFilter, getLibraryData]);
 
     return (
-        <div className="library-view bg-light col-xl-8 col-11 rounded mt-4 mx-auto p-4">
+        <div className="library-view bg-light col-xl-6 col-lg-8 col-10 rounded mt-5 mx-auto p-4">
             <Nav variant="tabs" defaultActiveKey="anime">
                 <Nav.Item>
-                    <Nav.Link eventKey="anime" onClick={() => setContentFilter('anime')}>Anime</Nav.Link>
+                    {isLoading ? (
+                        <Nav.Link disabled eventKey="anime" onClick={() => setContentTypeFilter('anime')}>Anime</Nav.Link>
+                    ) : <Nav.Link eventKey="anime" onClick={() => setContentTypeFilter('anime')}>Anime</Nav.Link>}
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="manga" onClick={() => setContentFilter('manga')}>Manga</Nav.Link>
+                    {isLoading ? (
+                        <Nav.Link disabled eventKey="manga" onClick={() => setContentTypeFilter('manga')}>Manga</Nav.Link>
+                    ): <Nav.Link eventKey="manga" onClick={() => setContentTypeFilter('manga')}>Manga</Nav.Link>}  
                 </Nav.Item>
             </Nav>
-            <LibraryEntry contentFilter={contentFilter} contentIds={contentIds} />
+            <div className="library-cards mt-3">
+                {libraryData.map(entry => {
+                    return (
+                        <LibraryEntry 
+                            key={entry.id} 
+                            progress={entry.progress} 
+                            contentUrl={entry.relationships.media.links.related} 
+                        />
+                    )
+                })}
+            </div>
         </div>
     );
 }
 
-export default Library;
+const mapStateToProps = state => {
+    return {
+        isLoading: state.isLoading,
+        libraryData: state.libraryData
+    };
+  };
+  
+export default connect(
+    mapStateToProps,
+    { getLibraryData }
+)(Library);

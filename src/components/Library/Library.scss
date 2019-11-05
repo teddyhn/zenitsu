@@ -1,3 +1,16 @@
 .library-view {
-    min-height: 85vh;
+    min-height: fit-content;
+}
+
+#root > .library-view {
+    padding-left: 34px!important;
+}
+
+.library-cards {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.nav {
+    margin-right: 10px;
 }
