@@ -42,7 +42,7 @@ function Library({ getLibraryData, libraryData, isLoading, contentView }) {
                             )
                         })}
                     </div>
-                ) : <Table bordered>
+                ) : <Table striped bordered>
                         <thead>
                             <tr>
                                 <th></th>

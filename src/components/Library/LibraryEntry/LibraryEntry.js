@@ -29,8 +29,6 @@ function LibraryEntry(props) {
         getContentInfo(props.contentUrl);
     }, [props.contentUrl])
 
-    console.log(contentInfo);
-
     return (
         <>
         {contentInfo && props.contentView === 'grid' ? (

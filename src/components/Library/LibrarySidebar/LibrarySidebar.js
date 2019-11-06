@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { setLibraryContentView } from '../../../actions';
 import { Grid, Server } from 'react-feather';
-import Nav from 'react-bootstrap/Nav'
+import ListGroup from 'react-bootstrap/ListGroup';
 
-import './LibrarySidebar.scss'
+import './LibrarySidebar.scss';
 
 function LibrarySidebar({ setLibraryContentView }) {
     const [activeView, setActiveView] = useState('grid')
@@ -33,6 +33,26 @@ function LibrarySidebar({ setLibraryContentView }) {
                     />}
             </div>
             <hr />
+            <ListGroup>
+                <ListGroup.Item className="list-all">
+                    All
+                </ListGroup.Item>
+                <ListGroup.Item className="list-current">
+                    Currently Watching
+                </ListGroup.Item>
+                <ListGroup.Item className="list-want">
+                    Want to Watch
+                </ListGroup.Item>
+                <ListGroup.Item className="list-completed">
+                    Completed
+                </ListGroup.Item>
+                <ListGroup.Item className="list-hold">
+                    On Hold
+                </ListGroup.Item>
+                <ListGroup.Item className="list-dropped">
+                    Dropped
+                </ListGroup.Item>
+            </ListGroup>
         </div>
     )
 }
