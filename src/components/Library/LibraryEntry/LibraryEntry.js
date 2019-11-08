@@ -34,12 +34,19 @@ function LibraryEntry(props) {
                 <div className="card-wrapper">
                     <Card>
                         <Card.Img src={contentInfo.posterImage.small} alt="Poster" />
-                        {(props.progress / contentInfo.episodeCount === 1) ? (
-                            <ProgressBar variant="success" now={(props.progress / contentInfo.episodeCount) * 100} />
-                        ) : <ProgressBar now={(props.progress / contentInfo.episodeCount) * 100} />}
+                        {(() => {
+                            switch (props.status) {
+                                case "current":     return <ProgressBar now={(props.progress / contentInfo.episodeCount) * 100} />;
+                                case "planned":     return <ProgressBar variant="info" now={(props.progress / contentInfo.episodeCount) * 100} />
+                                case "completed":   return <ProgressBar variant="success" now={(props.progress / contentInfo.episodeCount) * 100} />
+                                case "on_hold":     return <ProgressBar variant="warning" now={(props.progress / contentInfo.episodeCount) * 100} />
+                                case "dropped":     return <ProgressBar variant="danger" now={(props.progress / contentInfo.episodeCount) * 100} />
+                                default:            return <ProgressBar now={(props.progress / contentInfo.episodeCount) * 100} />
+                            }
+                        })()}
                         {contentInfo.type === 'anime' ? (
-                            <Card.Text>{props.progress === 0 ? <>Not Started</> : <><b>Ep. {props.progress}</b> of <b>{contentInfo.episodeCount}</b></>}</Card.Text>
-                        ) : <Card.Text><b>Ch. {props.progress}</b></Card.Text>}
+                            <Card.Text>{props.progress === 0 ? <>Not Started</> : <>Ep. {props.progress} of {contentInfo.episodeCount}</>}</Card.Text>
+                        ) : <Card.Text>Ch. {props.progress}</Card.Text>}
                     </Card>
                 </div>
         ) 
@@ -53,7 +60,7 @@ function LibraryEntry(props) {
                 {contentInfo.type === 'anime' ? (
                     <td className="align-middle">{props.progress} / {contentInfo.episodeCount}</td>
                 ) : <td className="align-middle">{props.progress} / —</td>}
-                <td className="align-middle">{props.status}</td>
+                <td className="align-middle">{props.status === 'on_hold' ? 'on hold' : props.status}</td>
             </tr>
         ) : null}
         </>

@@ -36,21 +36,12 @@ function Library({ getLibraryData, libraryData, isLoading, contentView, statusFi
                 </Nav>
                 {contentView === 'grid' ? (
                     <div className="library-cards">
-                        {statusFilter !== 'all' ? (      
-                            libraryData.filter(entry => entry.status === statusFilter).map(entry => {
+                        {libraryData.map(entry => {
                                 return (
                                     <LibraryEntry 
                                         key={entry.id} 
-                                        progress={entry.progress} 
-                                        contentUrl={entry.relationships.media.links.related} 
-                                    />
-                                )
-                            })
-                        ) : libraryData.map(entry => {
-                                return (
-                                    <LibraryEntry 
-                                        key={entry.id} 
-                                        progress={entry.progress} 
+                                        progress={entry.progress}
+                                        status={entry.status}
                                         contentUrl={entry.relationships.media.links.related} 
                                     />
                                 )
@@ -66,18 +57,7 @@ function Library({ getLibraryData, libraryData, isLoading, contentView, statusFi
                             </tr>
                         </thead>
                         <tbody>
-                            {statusFilter !== 'all' ? (
-                                libraryData.filter(entry => entry.status === statusFilter).map(entry => {
-                                    return (
-                                        <LibraryEntry 
-                                            key={entry.id} 
-                                            progress={entry.progress}
-                                            status={entry.status}
-                                            contentUrl={entry.relationships.media.links.related} 
-                                        />
-                                    )
-                                })
-                            ) : libraryData.map(entry => {
+                            {libraryData.map(entry => {
                                     return (
                                         <LibraryEntry 
                                             key={entry.id} 

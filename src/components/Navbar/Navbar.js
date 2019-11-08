@@ -39,8 +39,8 @@ const SiteNavbar = props => {
                     <Dropdown.Menu alignRight>
                         <Dropdown.Item as={Nav.Link}>Signed in as <b>{username}</b></Dropdown.Item>
                         <Dropdown.Divider />
-                        <Dropdown.Item as={Nav.Link} onClick={signout}>Settings</Dropdown.Item>
-                        <Dropdown.Item as={Nav.Link} onClick={signout}>Sign out</Dropdown.Item>
+                        <Dropdown.Item as={Nav.Link} onClick={() => signout()}>Settings</Dropdown.Item>
+                        <Dropdown.Item as={Nav.Link} onClick={() => signout()}>Sign out</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
                 ) : <Nav.Link as={NavLink} to="/sign-in">Sign in</Nav.Link>}

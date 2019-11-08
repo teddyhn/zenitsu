@@ -12,7 +12,7 @@ function LibrarySearch({ setLibraryData, contentTypeFilter }) {
     const userId = localStorage.getItem('userId');
 
     const searchLibraryEntries = (query, contentTypeFilter) => {
-        // Rapidly backspacing input changes to no query length will resolve to an API call with query.length === 1, this sets it to no query
+        // Rapidly backspacing input to zero query length will resolve to an API call with query.length === 1, this sets it to no query
         if (query.length === 1) {
             query = '';
         }
@@ -33,7 +33,7 @@ function LibrarySearch({ setLibraryData, contentTypeFilter }) {
                 const entries = res.data.data;
                 // Makes search API call consistent with initial fetch of Library data
                 entries.map(entry => {
-                    return entry.progress = entry.attributes.progress;
+                    return entry.progress = entry.attributes.progress, entry.status = entry.attributes.status;
                 })
                 setLibraryData(entries);
             })
