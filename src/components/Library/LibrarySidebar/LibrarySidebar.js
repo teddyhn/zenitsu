@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { setLibraryContentView } from '../../../actions';
+import { setLibraryContentView, setLibraryStatusFilter } from '../../../actions';
 import { Grid, Server } from 'react-feather';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 import './LibrarySidebar.scss';
 
-function LibrarySidebar({ setLibraryContentView }) {
-    const [activeView, setActiveView] = useState('grid')
+function LibrarySidebar({ setLibraryContentView, setLibraryStatusFilter, statusFilter, contentTypeFilter }) {
+    const [activeView, setActiveView] = useState('grid');
 
     return (
         <div className="library-sidebar bg-light col-xl-2 p-4 rounded shadow">
@@ -34,24 +34,63 @@ function LibrarySidebar({ setLibraryContentView }) {
             </div>
             <hr />
             <ListGroup>
-                <ListGroup.Item className="list-all">
-                    All
-                </ListGroup.Item>
-                <ListGroup.Item className="list-current">
-                    Currently Watching
-                </ListGroup.Item>
-                <ListGroup.Item className="list-want">
-                    Want to Watch
-                </ListGroup.Item>
-                <ListGroup.Item className="list-completed">
-                    Completed
-                </ListGroup.Item>
-                <ListGroup.Item className="list-hold">
-                    On Hold
-                </ListGroup.Item>
-                <ListGroup.Item className="list-dropped">
-                    Dropped
-                </ListGroup.Item>
+
+                {statusFilter === 'all' ? (
+                    <ListGroup.Item action>
+                        {`All ${contentTypeFilter.charAt(0).toUpperCase() + contentTypeFilter.substring(1)}`}
+                    </ListGroup.Item>
+                ) : <ListGroup.Item action onClick={() => setLibraryStatusFilter('all')}>
+                        {`All ${contentTypeFilter.charAt(0).toUpperCase() + contentTypeFilter.substring(1)}`}
+                    </ListGroup.Item>}
+
+                {statusFilter === 'current' ? (
+                    <ListGroup.Item action variant="primary">
+                        {contentTypeFilter === 'anime' ? (
+                            <>Currently Watching</>
+                        ) : <>Currently Reading</>}
+                    </ListGroup.Item>
+                ) : <ListGroup.Item action variant="primary" onClick={() => setLibraryStatusFilter('current')}>
+                        {contentTypeFilter === 'anime' ? (
+                            <>Currently Watching</>
+                        ) : <>Currently Reading</>}
+                    </ListGroup.Item>}
+
+                {statusFilter === 'planned' ? (
+                    <ListGroup.Item action variant="info">
+                        {contentTypeFilter === 'anime' ? (
+                            <>Want to Watch</>
+                        ) : <>Want to Read</>}
+                    </ListGroup.Item>
+                ) : <ListGroup.Item action variant="info" onClick={() => setLibraryStatusFilter('planned')}>
+                        {contentTypeFilter === 'anime' ? (
+                            <>Want to Watch</>
+                        ) : <>Want to Read</>}
+                    </ListGroup.Item>}
+
+                {statusFilter === 'completed' ? (
+                    <ListGroup.Item action variant="success">
+                        Completed
+                    </ListGroup.Item>
+                ) : <ListGroup.Item action variant="success" onClick={() => setLibraryStatusFilter('completed')}>
+                        Completed
+                    </ListGroup.Item>}
+
+                {statusFilter === 'on_hold' ? (
+                    <ListGroup.Item action variant="warning">
+                        On Hold
+                    </ListGroup.Item>
+                ) : <ListGroup.Item action variant="warning" onClick={() => setLibraryStatusFilter('on_hold')}>
+                        On Hold
+                    </ListGroup.Item>}
+
+                {statusFilter === 'dropped' ? (
+                    <ListGroup.Item action variant="danger">
+                        Dropped
+                    </ListGroup.Item>
+                ) : <ListGroup.Item action variant="danger" onClick={() => setLibraryStatusFilter('dropped')}>
+                        Dropped
+                    </ListGroup.Item>}
+                    
             </ListGroup>
         </div>
     )
@@ -59,10 +98,11 @@ function LibrarySidebar({ setLibraryContentView }) {
 
 const mapStateToProps = state => {
     return {
+        statusFilter: state.statusFilter
     };
 };
   
 export default connect(
     mapStateToProps,
-    { setLibraryContentView }
+    { setLibraryContentView, setLibraryStatusFilter }
 )(LibrarySidebar);

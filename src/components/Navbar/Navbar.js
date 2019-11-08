@@ -6,7 +6,6 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/Lightning.svg";
-import { User } from 'react-feather';
 
 import "./Navbar.scss"
 
@@ -19,6 +18,7 @@ const SiteNavbar = props => {
     }
     
     const username = localStorage.getItem('username');
+    const avatar = localStorage.getItem('avatar');
 
     return (
         <Navbar bg="light" variant="light" className="font-weight-bold shadow">
@@ -35,7 +35,7 @@ const SiteNavbar = props => {
             <Nav className="ml-auto">
                 {token ? (
                 <Dropdown>
-                    <Dropdown.Toggle as={Nav.Link}><User /></Dropdown.Toggle>
+                    <Dropdown.Toggle as={Nav.Link}><img src={avatar ? (avatar) : 'https://kitsu.io/images/default_avatar-ff0fd0e960e61855f9fc4a2c5d994379.png'} alt="User avatar" /></Dropdown.Toggle>
                     <Dropdown.Menu alignRight>
                         <Dropdown.Item as={Nav.Link}>Signed in as <b>{username}</b></Dropdown.Item>
                         <Dropdown.Divider />

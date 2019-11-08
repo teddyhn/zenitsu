@@ -1,32 +1,28 @@
 .grid-view, .list-view {
-    color: rgba(0, 0, 0, .5);
+    color: rgba(0, 0, 0, .4);
 
     &:hover {
-        color: rgba(0, 0, 0, 1);
+        color: #303133;
         cursor: pointer;
     }
 
     &.active {
-        color:  rgba(0, 0, 0, 1);
+        color:  #303133;
     }
-}
-
-.list-group > .list-group-item {
-    font-weight: 600;
 }
 
 .list-group > .list-all {
-    background-color: rgba(242, 125, 30, 0.05);
-    color: darken(rgb(242, 125, 30), 25%);
+    background-color: rgba(108,117,125,0.05);
+    color: darken(rgb(108,117,125), 25%);
 
     &:hover {
-        background-color: rgba(242, 125, 30, 0.15);
-        color: darken(rgb(242, 125, 30), 25%);
+        background-color: rgba(108,117,125,0.15);
+        color: darken(rgb(108,117,125), 25%);
         cursor: pointer;
     }
 
     &.active {
-        background-color: rgb(242, 125, 30);
+        background-color: rgb(108,117,125);
         border: none;
 
         &:hover {
@@ -66,6 +62,16 @@
         color: darken(rgb(23,162,184), 25%);
         cursor: pointer;
     }
+
+    &.active {
+        background-color: rgb(23,162,184);
+        border: none;
+
+        &:hover {
+            color: #fff;
+            cursor: default;
+        }
+    }
 }
 
 .list-group > .list-completed {
@@ -76,6 +82,16 @@
         background-color: rgba(40,167,69,0.15);
         color: darken(rgb(40,167,69), 25%);
         cursor: pointer;
+    }
+
+    &.active {
+        background-color: rgb(40,167,69);
+        border: none;
+
+        &:hover {
+            color: #fff;
+            cursor: default;
+        }
     }
 }
 
@@ -88,6 +104,16 @@
         color: darken(rgb(255,193,7), 25%);
         cursor: pointer;
     }
+
+    &.active {
+        background-color: rgb(255,193,7);
+        border: none;
+
+        &:hover {
+            color: #fff;
+            cursor: default;
+        }
+    }
 }
 
 .list-group > .list-dropped {
@@ -98,5 +124,15 @@
         background-color: rgba(220,53,69, 0.15);
         color: darken(rgb(220,53,69), 25%);
         cursor: pointer;
+    }
+
+    &.active {
+        background-color: rgb(220,53,69);
+        border: none;
+
+        &:hover {
+            color: #fff;
+            cursor: default;
+        }
     }
 }
