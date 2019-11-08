@@ -29,8 +29,12 @@ function LibrarySearch({ cached, setLibraryData, contentTypeFilter }) {
                 cancelToken: cancelToken.token
             })
             .then(res => {
-                console.log(res.data.data);
-                setLibraryData(res.data.data);
+                const entries = res.data.data;
+                // Makes search API call consistent with initial fetch of Library data
+                entries.map(entry => {
+                    return entry.progress = entry.attributes.progress;
+                })
+                setLibraryData(entries);
             })
             .catch(error => {
                 if (axios.isCancel(error) || error) {

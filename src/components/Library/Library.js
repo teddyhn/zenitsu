@@ -16,8 +16,6 @@ function Library({ getLibraryData, libraryData, isLoading, contentView, statusFi
         getLibraryData(contentTypeFilter);
     }, [contentTypeFilter]);
 
-    console.log(libraryData);
-
     return (
         <div className="library-view">
             <div className="content-view bg-light col-xl-6 col-lg-8 col-10 rounded shadow p-4">

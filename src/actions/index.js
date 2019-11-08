@@ -12,8 +12,9 @@ export const SET_LIBRARY_STATUS_FILTER = "SET_LIBRARY_STATUS_FILTER";
 
 export const getLibraryData = (contentTypeFilter) => dispatch => {
     dispatch({ type: FETCHING_LIBRARY_DATA_START });
-    api.get(`users/${userId}/library-entries`, {
+    api.get(`library-entries`, {
             filter: {
+                userId: userId,
                 kind: contentTypeFilter
             }
         })
