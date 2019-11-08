@@ -5,13 +5,14 @@ import { setLibraryData } from '../../../actions/';
 import FormControl from 'react-bootstrap/FormControl';
 import InputGroup from 'react-bootstrap/InputGroup';
 
-function LibrarySearch({ cached, setLibraryData, contentTypeFilter }) {
+function LibrarySearch({ setLibraryData, contentTypeFilter }) {
     const [query, setQuery] = useState('');
     const [cancel, setCancel] = useState();
 
     const userId = localStorage.getItem('userId');
 
     const searchLibraryEntries = (query, contentTypeFilter) => {
+        // Rapidly backspacing input changes to no query length will resolve to an API call with query.length === 1, this sets it to no query
         if (query.length === 1) {
             query = '';
         }
@@ -62,7 +63,6 @@ function LibrarySearch({ cached, setLibraryData, contentTypeFilter }) {
 
 const mapStateToProps = state => {
     return {
-        cached: state.cached
     };
   };
   

@@ -38,7 +38,7 @@ function LibraryEntry(props) {
                             <ProgressBar variant="success" now={(props.progress / contentInfo.episodeCount) * 100} />
                         ) : <ProgressBar now={(props.progress / contentInfo.episodeCount) * 100} />}
                         {contentInfo.type === 'anime' ? (
-                            <Card.Text><b>Ep. {props.progress}</b> of <b>{contentInfo.episodeCount}</b></Card.Text>
+                            <Card.Text>{props.progress === 0 ? <>Not Started</> : <><b>Ep. {props.progress}</b> of <b>{contentInfo.episodeCount}</b></>}</Card.Text>
                         ) : <Card.Text><b>Ch. {props.progress}</b></Card.Text>}
                     </Card>
                 </div>

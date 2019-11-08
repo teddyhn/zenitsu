@@ -2,9 +2,11 @@ import {
     FETCHING_LIBRARY_DATA_START,
     FETCHING_LIBRARY_DATA_SUCCESS,
     FETCHING_LIBRARY_DATA_FAILURE,
+    FETCHING_FILTERED_LIBRARY_ENTRIES_START,
+    FETCHING_FILTERED_LIBRARY_ENTRIES_SUCCESS,
+    FETCHING_FILTERED_LIBRARY_ENTRIES_FAILURE,
     SET_LIBRARY_DATA,
-    SET_LIBRARY_CONTENT_VIEW,
-    SET_LIBRARY_STATUS_FILTER
+    SET_LIBRARY_CONTENT_VIEW
 } from '../actions/';
 
 const initialState = {
@@ -36,6 +38,24 @@ export const reducer = (state = initialState, action) => {
                 error: action.payload,
                 isLoading: false
             }
+        case FETCHING_FILTERED_LIBRARY_ENTRIES_START:
+            return {
+                ...state,
+                isLoading: true,
+                error: ""
+            }
+        case FETCHING_FILTERED_LIBRARY_ENTRIES_SUCCESS:
+            return {
+                ...state,
+                libraryData: action.payload,
+                isLoading: false
+            }
+        case FETCHING_FILTERED_LIBRARY_ENTRIES_FAILURE:
+            return {
+                ...state,
+                error: action.payload,
+                isLoading: false
+            }
         case SET_LIBRARY_DATA:
             return {
                 ...state,
@@ -45,11 +65,6 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 contentView: action.payload
-            }
-        case SET_LIBRARY_STATUS_FILTER:
-            return {
-                ...state,
-                statusFilter: action.payload
             }
         default:
             return state;
