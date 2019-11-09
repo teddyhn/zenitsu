@@ -1,5 +1,9 @@
 @import '../../../stylesheets/variables.scss';
 
+.card:hover {
+    cursor: pointer;
+}
+
 .card > .card-img {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
@@ -64,4 +68,60 @@
 .list-title-center {
     margin-bottom: 0;
     padding: 12px 0;
+}
+
+// Library card popover
+
+.popover-body {
+    min-width: 275px;
+}
+
+.popover-progress-dropdown {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & > .input-group {
+        width: 60%;
+
+        & > .form-control {
+            padding: 0 0 0 0.25rem;
+        }
+    }
+}
+    
+
+.popover-status-dropdown {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0rem;
+    padding-top: 0!important;
+
+    & > .form-control {
+        padding: 0 0 0 0.25rem;
+        width: 60%;
+    }
+
+    & .input-group-text {
+        font-size: 0.75rem;
+    }
+}
+
+.popover-synopsis {
+    font-size: 0.75rem;
+    max-height: 5.75rem;
+    margin: 0;
+    overflow-y: hidden;
+}
+
+.popover-synopsis-overlay {
+    -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.33), rgba(0, 0, 0, 1));
+    mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.33), rgba(0, 0, 0, 1));
+}
+
+.title-year {
+    color: #606266;
+    font-size: 1rem;
+    font-weight: 400;
 }

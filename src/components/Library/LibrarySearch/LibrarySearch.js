@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { setLibraryData } from '../../../actions/';
@@ -33,7 +33,10 @@ function LibrarySearch({ setLibraryData, contentTypeFilter }) {
                 const entries = res.data.data;
                 // Makes search API call consistent with initial fetch of Library data
                 entries.map(entry => {
-                    return entry.progress = entry.attributes.progress, entry.status = entry.attributes.status;
+                    return (
+                        entry.progress = entry.attributes.progress, 
+                        entry.status = entry.attributes.status
+                    );
                 })
                 setLibraryData(entries);
             })

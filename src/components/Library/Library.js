@@ -39,7 +39,8 @@ function Library({ getLibraryData, libraryData, isLoading, contentView, statusFi
                         {libraryData.map(entry => {
                                 return (
                                     <LibraryEntry 
-                                        key={entry.id} 
+                                        key={entry.id}
+                                        libraryEntryId={entry.id}
                                         progress={entry.progress}
                                         status={entry.status}
                                         contentUrl={entry.relationships.media.links.related} 
@@ -53,14 +54,15 @@ function Library({ getLibraryData, libraryData, isLoading, contentView, statusFi
                             <tr>
                                 <th></th>
                                 <th width="12%">Progress</th>
-                                <th width="14%">Status</th>
+                                <th width="12%">Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             {libraryData.map(entry => {
                                     return (
                                         <LibraryEntry 
-                                            key={entry.id} 
+                                            key={entry.id}
+                                            libraryEntryId={entry.id}
                                             progress={entry.progress}
                                             status={entry.status}
                                             contentUrl={entry.relationships.media.links.related} 
