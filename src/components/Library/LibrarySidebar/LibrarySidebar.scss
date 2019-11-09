@@ -1,0 +1,138 @@
+.grid-view, .list-view {
+    color: rgba(0, 0, 0, .4);
+
+    &:hover {
+        color: #303133;
+        cursor: pointer;
+    }
+
+    &.active {
+        color:  #303133;
+    }
+}
+
+.list-group > .list-all {
+    background-color: rgba(108,117,125,0.05);
+    color: darken(rgb(108,117,125), 25%);
+
+    &:hover {
+        background-color: rgba(108,117,125,0.15);
+        color: darken(rgb(108,117,125), 25%);
+        cursor: pointer;
+    }
+
+    &.active {
+        background-color: rgb(108,117,125);
+        border: none;
+
+        &:hover {
+            color: #fff;
+            cursor: default;
+        }
+    }
+}
+
+.list-group > .list-current {
+    background-color: rgba(0,123,255,0.05);
+    color: darken(rgb(0,123,255), 25%);
+
+    &:hover {
+        background-color: rgba(0,123,255,0.15);
+        color: darken(rgb(0,123,255), 25%);
+        cursor: pointer;
+    }
+
+    &.active {
+        background-color: rgb(0,123,255);
+        border: none;
+
+        &:hover {
+            color: #fff;
+            cursor: default;
+        }
+    }
+}
+
+.list-group > .list-want {
+    background-color: rgba(23,162,184,0.05);
+    color: darken(rgb(23,162,184), 25%);
+
+    &:hover {
+        background-color: rgba(23,162,184,0.15);
+        color: darken(rgb(23,162,184), 25%);
+        cursor: pointer;
+    }
+
+    &.active {
+        background-color: rgb(23,162,184);
+        border: none;
+
+        &:hover {
+            color: #fff;
+            cursor: default;
+        }
+    }
+}
+
+.list-group > .list-completed {
+    background-color: rgba(40,167,69,0.05);
+    color: darken(rgb(40,167,69), 25%);
+
+    &:hover {
+        background-color: rgba(40,167,69,0.15);
+        color: darken(rgb(40,167,69), 25%);
+        cursor: pointer;
+    }
+
+    &.active {
+        background-color: rgb(40,167,69);
+        border: none;
+
+        &:hover {
+            color: #fff;
+            cursor: default;
+        }
+    }
+}
+
+.list-group > .list-hold {
+    background-color: rgba(255,193,7, 0.05);
+    color: darken(rgb(255,193,7), 25%);
+
+    &:hover {
+        background-color: rgba(255,193,7, 0.15);
+        color: darken(rgb(255,193,7), 25%);
+        cursor: pointer;
+    }
+
+    &.active {
+        background-color: rgb(255,193,7);
+        border: none;
+
+        &:hover {
+            color: #fff;
+            cursor: default;
+        }
+    }
+}
+
+.list-group > .list-dropped {
+    background-color: rgba(220,53,69, 0.05);
+    color: darken(rgb(220,53,69), 25%);
+
+    &:hover {
+        background-color: rgba(220,53,69, 0.15);
+        color: darken(rgb(220,53,69), 25%);
+        cursor: pointer;
+    }
+
+    &.active {
+        background-color: rgb(220,53,69);
+        border: none;
+
+        &:hover {
+            color: #fff;
+            cursor: default;
+        }
+    }
+}

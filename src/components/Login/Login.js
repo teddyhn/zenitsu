@@ -31,6 +31,7 @@ const Login = props => {
                 .then(res => {
                     localStorage.setItem('username', res.data.data[0].attributes.name);
                     localStorage.setItem('userId', res.data.data[0].id);
+                    localStorage.setItem('avatar', res.data.data[0].attributes.avatar.tiny);
                     props.history.push('/');
                 })
                 .catch(err => console.log(err));
