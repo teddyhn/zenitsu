@@ -16,8 +16,7 @@
 
 .library-search {
     margin-left: auto;
-    margin-top: 3px;
-    width: 33%;
+    width: 50%;
 }
 
 .library-sidebar {
@@ -40,4 +39,8 @@
 
 table.table.table-bordered {
     width: calc(100% - 10px);
+}
+
+.table-head-status {
+    min-width: 185px;
 }

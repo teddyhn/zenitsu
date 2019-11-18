@@ -66,8 +66,9 @@ function LibrarySearch({ setLibraryData, contentTypeFilter }) {
 
 const mapStateToProps = state => {
     return {
+        
     };
-  };
+};
   
 export default connect(
     mapStateToProps,

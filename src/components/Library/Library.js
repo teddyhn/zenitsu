@@ -9,7 +9,7 @@ import LibrarySearch from './LibrarySearch/LibrarySearch';
 import LibrarySidebar from './LibrarySidebar/LibrarySidebar';
 import './Library.scss';
 
-function Library({ getLibraryData, libraryData, isLoading, contentView, statusFilter }) {
+function Library({ getLibraryData, libraryData, isLoading, contentView }) {
     const [contentTypeFilter, setContentTypeFilter] = useState('anime');
 
     useEffect(() => {
@@ -53,8 +53,8 @@ function Library({ getLibraryData, libraryData, isLoading, contentView, statusFi
                         <thead>
                             <tr>
                                 <th></th>
-                                <th width="12%">Progress</th>
-                                <th width="12%">Status</th>
+                                <th className="table-head-status" width="10%">Status</th>
+                                <th width="10%">Progress</th>
                             </tr>
                         </thead>
                         <tbody>
