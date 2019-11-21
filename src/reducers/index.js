@@ -13,7 +13,7 @@ const initialState = {
     contentView: 'grid',
     statusFilter: 'all',
     libraryData: [],
-    cached: [],
+    cached: {},
     isLoading: false
 };
 
@@ -29,7 +29,6 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 libraryData: action.payload,
-                cached: action.payload,
                 isLoading: false
             }
         case FETCHING_LIBRARY_DATA_FAILURE:
@@ -48,6 +47,10 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 libraryData: action.payload,
+                cached: {
+                    ...state.cached,
+                    [action.query]: action.payload
+                },
                 isLoading: false
             }
         case FETCHING_FILTERED_LIBRARY_ENTRIES_FAILURE:

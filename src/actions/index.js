@@ -28,8 +28,13 @@ export const getLibraryData = (contentTypeFilter) => dispatch => {
         });
 };
 
-export const getFilteredLibraryEntries = (contentTypeFilter, status) => dispatch => {
+export const getFilteredLibraryEntries = (contentTypeFilter, status) => (dispatch, getState) => {
     dispatch({ type: FETCHING_FILTERED_LIBRARY_ENTRIES_START });
+
+    if (getState().cached[status]) {
+        return dispatch({ type: FETCHING_LIBRARY_DATA_SUCCESS, payload: getState().cached[status] });
+    }
+
     api.get(`library-entries`, {
             filter: {
                 userId: userId,
@@ -38,7 +43,7 @@ export const getFilteredLibraryEntries = (contentTypeFilter, status) => dispatch
             }
         })
         .then(res => {
-            dispatch({ type: FETCHING_FILTERED_LIBRARY_ENTRIES_SUCCESS, payload: res.data });
+            dispatch({ type: FETCHING_FILTERED_LIBRARY_ENTRIES_SUCCESS, payload: res.data, query: status });
         })
         .catch(err => {
             dispatch({ type: FETCHING_FILTERED_LIBRARY_ENTRIES_FAILURE, payload: err.data });

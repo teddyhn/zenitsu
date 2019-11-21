@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { setLibraryContentView, getFilteredLibraryEntries, getLibraryData } from '../../../actions';
+import { setLibraryContentView, getFilteredLibraryEntries } from '../../../actions';
 import { ReactComponent as Grid } from '../../../assets/grid.svg';
 import { ReactComponent as List } from '../../../assets/list.svg';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 import './LibrarySidebar.scss';
 
-function LibrarySidebar({ setLibraryContentView, contentTypeFilter, getFilteredLibraryEntries, getLibraryData }) {
+function LibrarySidebar({ setLibraryContentView, contentTypeFilter, getFilteredLibraryEntries }) {
     const [activeView, setActiveView] = useState('grid');
 
     return (
@@ -45,7 +45,7 @@ function LibrarySidebar({ setLibraryContentView, contentTypeFilter, getFilteredL
             <hr />
             <ListGroup>
 
-                <ListGroup.Item action onClick={() => getLibraryData(contentTypeFilter)}>
+                <ListGroup.Item action onClick={() => getFilteredLibraryEntries(contentTypeFilter, 'current,planned,completed,on_hold,dropped')}>
                     {`All ${contentTypeFilter.charAt(0).toUpperCase() + contentTypeFilter.substring(1)}`}
                 </ListGroup.Item>
 
@@ -86,5 +86,5 @@ const mapStateToProps = () => {
   
 export default connect(
     mapStateToProps,
-    { setLibraryContentView, getFilteredLibraryEntries, getLibraryData }
+    { setLibraryContentView, getFilteredLibraryEntries }
 )(LibrarySidebar);

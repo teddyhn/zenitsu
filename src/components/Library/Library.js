@@ -58,7 +58,7 @@ function Library({ getLibraryData, libraryData, isLoading, contentView }) {
                             </tr>
                         </thead>
                         <tbody>
-                            {libraryData.map(entry => {
+                            {libraryData && libraryData.map(entry => {
                                     return (
                                         <LibraryEntry 
                                             key={entry.id}
