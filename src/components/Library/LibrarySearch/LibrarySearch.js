@@ -8,12 +8,18 @@ import InputGroup from 'react-bootstrap/InputGroup';
 function LibrarySearch({ setLibraryData, contentTypeFilter }) {
     const [query, setQuery] = useState('');
     const [cancel, setCancel] = useState();
+    const [cache, setCache] = useState({});
 
     const userId = localStorage.getItem('userId');
 
     const searchLibraryEntries = (query, contentTypeFilter) => {
+        if (cache[query]) {
+            setLibraryData(cache[query]);
+            return;
+        }
+
         // Rapidly backspacing input to zero query length will resolve to an API call with query.length === 1, this sets it to no query
-        if (query.length === 1) {
+        if (query.length < 3) {
             query = '';
         }
 
@@ -38,6 +44,7 @@ function LibrarySearch({ setLibraryData, contentTypeFilter }) {
                         entry.status = entry.attributes.status
                     );
                 })
+                setCache(cache => ({ ...cache, [query]: entries }));
                 setLibraryData(entries);
             })
             .catch(error => {
