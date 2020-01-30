@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { getLibraryData } from '../../actions';
 import Nav from 'react-bootstrap/Nav';
+import { ReactComponent as Logo } from "../../assets/Lightning.svg";
 import Table from 'react-bootstrap/Table';
 
 import LibraryEntry from './LibraryEntry/LibraryEntry';
@@ -15,6 +16,20 @@ function Library({ getLibraryData, libraryData, isLoading, contentView }) {
     useEffect(() => {
         getLibraryData(contentTypeFilter);
     }, [contentTypeFilter]);
+
+    const token = localStorage.getItem("token")
+
+    if (!token) {
+        return (
+            <div className="library-view">
+                <div className="content-view bg-light rounded shadow my-auto p-4 text-center">
+                    <Logo className="mb-4" height={64} />
+                    <p>You must be signed in to view your library!</p>
+                    <p>Requires a Kitsu account. You can sign up for one <a className="text-decoration-none" href="https://kitsu.io/">here.</a></p>
+                </div>
+            </div>
+        )
+    }
 
     return (
         <div className="library-view">
