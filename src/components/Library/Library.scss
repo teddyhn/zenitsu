@@ -1,8 +1,14 @@
+.library-message {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    height: 100%;
+}
+
 .library-view {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
-    height: 80vh;
     margin-top: 1.5rem;
 }
 

@@ -48,43 +48,45 @@ const Login = props => {
     }
  
     return (
-        <div className="login-form align-middle col-xl-2 col-md-4 col-10 p-4 rounded shadow">
-            <Form onSubmit={handleSubmit}>
-                <Form.Text>
-                    <h4>Sign in with <img src="https://avatars1.githubusercontent.com/u/7648832?s=200&v=4" alt="Kitsu logo" /></h4>
-                </Form.Text>
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Control
-                        name="email"
-                        placeholder="Enter email"
-                        type="text"
-                        value={credentials.email}
-                        onChange={evt => handleChange(evt)} 
-                    />
-                    {errors ? (
-                        <Form.Text className="text-muted">
-                            Please check your credentials and try again.
-                        </Form.Text>
-                    ) : null}
-                </Form.Group>
-
-                <Form.Group controlId="formBasicPassword">
-                    <Form.Control
-                        name="password"
-                        placeholder="Password"
-                        type="password"
-                        value={credentials.password}
-                        onChange={evt => handleChange(evt)}
-                        isInvalid={errors}
-                    />
-                </Form.Group>
-                <Button block variant="primary" type="submit">
-                    Sign in
-                </Button>
-                <Form.Text className="text-muted">
-                    Need an account? <a className="text-decoration-none" href="https://kitsu.io/">Register with Kitsu.</a>
-                </Form.Text>
-            </Form>
+        <div className="login-form-container">
+            <div className="login-form align-middle my-auto px-5 py-4 rounded shadow">
+                <Form onSubmit={handleSubmit}>
+                    <Form.Text>
+                        <h4>Sign in with <img src="https://avatars1.githubusercontent.com/u/7648832?s=200&v=4" alt="Kitsu logo" /></h4>
+                    </Form.Text>
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Control
+                            name="email"
+                            placeholder="Enter email"
+                            type="text"
+                            value={credentials.email}
+                            onChange={evt => handleChange(evt)} 
+                        />
+                        {errors ? (
+                            <Form.Text className="text-muted">
+                                Please check your credentials and try again.
+                            </Form.Text>
+                        ) : null}
+                    </Form.Group>
+    
+                    <Form.Group controlId="formBasicPassword">
+                        <Form.Control
+                            name="password"
+                            placeholder="Password"
+                            type="password"
+                            value={credentials.password}
+                            onChange={evt => handleChange(evt)}
+                            isInvalid={errors}
+                        />
+                    </Form.Group>
+                    <Button block variant="primary" type="submit">
+                        Sign in
+                    </Button>
+                    <Form.Text className="text-muted">
+                        Need an account? <a className="text-decoration-none" href="https://kitsu.io/">Register with Kitsu.</a>
+                    </Form.Text>
+                </Form>
+            </div>
         </div>
     );
 };

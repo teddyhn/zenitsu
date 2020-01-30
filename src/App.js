@@ -8,11 +8,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <Router>
-      <Route path="/" component={Navbar} />
-      <Route exact path="/library" component={Library} />
-      <Route exact path="/sign-in" component={Login} />
-    </Router>
+    <div className="wrapper">
+      <Router>
+        <Route path="/" component={Navbar} />
+        <Route exact path="/library" component={Library} />
+        <Route exact path="/sign-in" component={Login} />
+      </Router>
+    </div>
   );
 }
 

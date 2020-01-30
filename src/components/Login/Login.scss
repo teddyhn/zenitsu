@@ -9,12 +9,16 @@ img {
     text-align: center;
 }
 
+.login-form-container {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
 .login-form {
     background-color: $basic-white;
-    margin: auto;
-    position: absolute;
-    top: 45%;
-    transform: translateY(-50%);
     
     .btn {
         margin-bottom: 1rem;

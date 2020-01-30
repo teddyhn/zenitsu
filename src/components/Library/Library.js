@@ -21,8 +21,8 @@ function Library({ getLibraryData, libraryData, isLoading, contentView }) {
 
     if (!token) {
         return (
-            <div className="library-view">
-                <div className="content-view bg-light rounded shadow my-auto p-4 text-center">
+            <div className="library-message">
+                <div className="bg-light rounded shadow my-auto p-4 text-center">
                     <Logo className="mb-4" height={64} />
                     <p>You must be signed in to view your library!</p>
                     <p>Requires a Kitsu account. You can sign up for one <a className="text-decoration-none" href="https://kitsu.io/">here.</a></p>
