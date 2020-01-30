@@ -49,7 +49,7 @@ function LibrarySearch({ setLibraryData, contentTypeFilter }) {
 
     const handleInputChange = evt => {
         setQuery(evt.target.value);
-        searchLibraryEntries(query, contentTypeFilter);
+        searchLibraryEntries(evt.target.value, contentTypeFilter);
     }
 
     return (
